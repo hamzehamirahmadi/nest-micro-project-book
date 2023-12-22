@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  redis:
+    image: 'redis'
+    ports:
+      - '6379:6379'
+
+  rabbitmq:
+    image: 'rabbitmq'
+    environment:
+      RABBITMQ_DEFAULT_USER: 'admin'
+      RABBITMQ_DEFAULT_PASS: 'admin'
+    ports:
+      - '5672:5672'
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  mongodb:
+    image: 'mongo'
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb_data:/data/db
+
+  auth:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      REDIS_URL: 'redis://redis:6379'
+      RABBITMQ_URL: 'amqp://admin:admin@rabbitmq:5672'
+      MONGODB_URL: 'mongodb://mongodb:27017/'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - redis
+      - rabbitmq
+      - mongodb
+    command: sh -c "node dist/apps/auth/main.js"
+
+  books:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      REDIS_URL: 'redis://redis:6379'
+      RABBITMQ_URL: 'amqp://admin:admin@rabbitmq:5672'
+      MONGODB_URL: 'mongodb://mongodb:27017/'
+    ports:
+      - '3200:3200'
+    depends_on:
+      - redis
+      - rabbitmq
+      - mongodb
+    command: sh -c "node dist/apps/books/main.js"
+
+  user:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      REDIS_URL: 'redis://redis:6379'
+      RABBITMQ_URL: 'amqp://admin:admin@rabbitmq:5672'
+      MONGODB_URL: 'mongodb://mongodb:27017/'
+    ports:
+      - '3100:3100'
+    depends_on:
+      - redis
+      - rabbitmq
+      - mongodb
+    command: sh -c "node dist/apps/user/main.js"
+
+  payment:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      REDIS_URL: 'redis://redis:6379'
+      RABBITMQ_URL: 'amqp://admin:admin@rabbitmq:5672'
+      MONGODB_URL: 'mongodb://mongodb:27017/'
+    ports:
+      - '3300:3300'
+    depends_on:
+      - redis
+      - rabbitmq
+      - mongodb
+    command: sh -c "node dist/apps/payment/main.js"
+
+volumes:
+  rabbitmq_data:
+  mongodb_data:

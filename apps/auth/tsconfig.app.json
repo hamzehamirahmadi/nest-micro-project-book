@@ -16,5 +16,5 @@
   ],
   "include": [
     "src/**/*.ts"
-  ]
+, "../../libs/utils/src/lib/rmq/rmq.service.ts"  ]
 }
