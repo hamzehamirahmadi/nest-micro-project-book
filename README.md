@@ -5,7 +5,7 @@ Using the NX tool, I created a monorepo that has four services: Auth, User, Book
 In Nx, development is faster, but the amount of conflicts in simultaneous development is greater, and this requires practice and creating a suitable mechanism for it.
 
 ![Nx](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/nx.png)
-![Nx](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/nx2.png)
+![Nx2](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/nx2.png)
 
 A database is considered for each service, and data is created/updated in all services through messaging broker. In this project, user information is shared between services through message broker.
 
@@ -17,13 +17,13 @@ unzip badeh-saba.zip
 mongorestore /PATH
 ```
 
-![Nx](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/mongodb.png)
+![Mongodb](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/mongodb.png)
 
 
 RabbitMQ is used as a message broker. In this structure, each service has its own Queue. An exchange has been created for this project, which sends messages to services through RoutingKey. For example, three RoutingKeys have been created for User data. (userRemoved, userUpdated, and userCreated) Each Queue can participate in Exchange data using these keys.
 Also, the Payment service sends the user's access payment information to the Books service through (accessBook).
 
-![Nx](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/rabbitmq.png)
+![Rabbitmq](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/rabbitmq.png)
 
 ## Getting Started
 
