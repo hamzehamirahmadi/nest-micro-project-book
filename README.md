@@ -7,6 +7,7 @@ In Nx, development is faster, but the amount of conflicts in simultaneous develo
 ![Nx](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/nx.png)
 ![Nx2](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/nx2.png)
 
+## Database:
 A database is considered for each service, and data is created/updated in all services through messaging broker. In this project, user information is shared between services through message broker.
 
 Redis has also been used to cache books.
@@ -20,6 +21,7 @@ mongorestore /PATH
 ![Mongodb](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/mongodb.png)
 
 
+## Message broker:
 RabbitMQ is used as a message broker. In this structure, each service has its own Queue. An exchange has been created for this project, which sends messages to services through RoutingKey. For example, three RoutingKeys have been created for User data. (userRemoved, userUpdated, and userCreated) Each Queue can participate in Exchange data using these keys.
 Also, the Payment service sends the user's access payment information to the Books service through (accessBook).
 

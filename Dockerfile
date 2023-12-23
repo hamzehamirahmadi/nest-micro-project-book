@@ -18,10 +18,6 @@ RUN npm run user:build
 RUN npm run books:build
 RUN npm run payment:build
 
-# Copy the application code
-
 # Expose the port the app will run on
 EXPOSE 3000
-
-# Run the app
 
