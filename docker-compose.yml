@@ -28,9 +28,16 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      SERVICE_NAME: 'auth'
       REDIS_URL: 'redis://redis:6379'
       RABBITMQ_URL: 'amqp://admin:admin@rabbitmq:5672'
-      MONGODB_URL: 'mongodb://mongodb:27017/'
+      MONGODB_URL: 'mongodb://mongodb:27017/auth'
+      RABBITMQ_EXCHANGE: 'async_events_direct'
+      RABBITMQ_QUEUE: 'auth_queue'
+      WT_ACCESS_SECRET: 'qwerty'
+      JWT_REFRESH_SECRET: 'asdfgh'
+      JWT_ACCESS_EXPIRE_TIME: '20m'
+      JWT_REFRESH_EXPIRE_TIME: '10d'
     ports:
       - '3000:3000'
     depends_on:
@@ -39,14 +46,22 @@ services:
       - mongodb
     command: sh -c "node dist/apps/auth/main.js"
 
+
   books:
     build:
       context: .
       dockerfile: Dockerfile
     environment:
+      SERVICE_NAME: 'books'
       REDIS_URL: 'redis://redis:6379'
       RABBITMQ_URL: 'amqp://admin:admin@rabbitmq:5672'
-      MONGODB_URL: 'mongodb://mongodb:27017/'
+      MONGODB_URL: 'mongodb://mongodb:27017/books'
+      RABBITMQ_EXCHANGE: 'async_events_direct'
+      RABBITMQ_QUEUE: 'books_queue'
+      WT_ACCESS_SECRET: 'qwerty'
+      JWT_REFRESH_SECRET: 'asdfgh'
+      JWT_ACCESS_EXPIRE_TIME: '20m'
+      JWT_REFRESH_EXPIRE_TIME: '10d'
     ports:
       - '3200:3200'
     depends_on:
@@ -60,9 +75,16 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      SERVICE_NAME: 'users'
       REDIS_URL: 'redis://redis:6379'
       RABBITMQ_URL: 'amqp://admin:admin@rabbitmq:5672'
-      MONGODB_URL: 'mongodb://mongodb:27017/'
+      MONGODB_URL: 'mongodb://mongodb:27017/users'
+      RABBITMQ_EXCHANGE: 'async_events_direct'
+      RABBITMQ_QUEUE: 'users_queue'
+      WT_ACCESS_SECRET: 'qwerty'
+      JWT_REFRESH_SECRET: 'asdfgh'
+      JWT_ACCESS_EXPIRE_TIME: '20m'
+      JWT_REFRESH_EXPIRE_TIME: '10d'
     ports:
       - '3100:3100'
     depends_on:
@@ -76,9 +98,16 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      SERVICE_NAME: 'payments'
       REDIS_URL: 'redis://redis:6379'
       RABBITMQ_URL: 'amqp://admin:admin@rabbitmq:5672'
-      MONGODB_URL: 'mongodb://mongodb:27017/'
+      MONGODB_URL: 'mongodb://mongodb:27017/payments'
+      RABBITMQ_EXCHANGE: 'async_events_direct'
+      RABBITMQ_QUEUE: 'payments_queue'
+      WT_ACCESS_SECRET: 'qwerty'
+      JWT_REFRESH_SECRET: 'asdfgh'
+      JWT_ACCESS_EXPIRE_TIME: '20m'
+      JWT_REFRESH_EXPIRE_TIME: '10d'
     ports:
       - '3300:3300'
     depends_on:
