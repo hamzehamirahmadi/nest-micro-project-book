@@ -70,8 +70,7 @@ docker-compose up
 ### Api
 For easy access to the Api, there is an output from Postman called server-6.0.asc that you can import.
 
-Swagger is also used for Api which is available for every service in ze addresses
-
+Swagger is also used for the Api, which is available for each service at the following addresses
 ```
 http://localhost:3000/api/auth/docs
 http://localhost:3100/api/users/docs
