@@ -4,6 +4,8 @@ Using the NX tool, I created a monorepo that has four services: Auth, User, Book
 
 In Nx, development is faster, but the amount of conflicts in simultaneous development is greater, and this requires practice and creating a suitable mechanism for it.
 
+Access Token and Refresh Token are used for authentication.
+
 ![Nx](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/nx.png)
 ![Nx2](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/nx2.png)
 
