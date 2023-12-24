@@ -19,6 +19,10 @@ A backup version of the database named badeh-saba.zip has been added so that you
 unzip badeh-saba.zip
 mongorestore /PATH
 ```
+```
+Admin Username: admin
+Admin Password: admin
+```
 
 ![Mongodb](https://github.com/hamzehamirahmadi/nest-micro-project-book/blob/main/accets/mongodb.png)
 
